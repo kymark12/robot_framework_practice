@@ -10,13 +10,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Execute tests
-        uses: joonvena/robotframework-docker-action@v1.0
+        uses: joonvena/robotframework-docker-action@v1.1
         with:
           robot_tests_dir: ./tests
       - name: Upload test results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3.1.3
         if: always()
         with:
           name: reports
@@ -27,12 +27,12 @@ jobs:
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download reports
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3.0.2
         with:
           name: reports
-      - name: Send report to commit
+      - name: Send report to PR
         uses: joonvena/robotframework-reporter-action@v2.3
         with:
           gh_access_token: ${{ secrets.PAT }}
