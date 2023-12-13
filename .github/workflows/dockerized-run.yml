@@ -27,11 +27,12 @@ jobs:
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # - uses: actions/checkout@v4
       - name: Download reports
         uses: actions/download-artifact@v3.0.2
         with:
           name: reports
+          path: reports
       - name: Send report to PR
         uses: joonvena/robotframework-reporter-action@v2.3
         with:
