@@ -12,10 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - name: Execute tests
-        uses: joonvena/robotframework-docker-action@main
+        uses: joonvena/robotframework-docker-action@v1.0
         with:
           robot_tests_dir: ./tests/data_driven_tests.robot
           robot_options: '-d ./reports'
+          pabot_options: ''
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: always()
@@ -34,6 +35,6 @@ jobs:
         with:
           name: reports
       - name: Send report to commit
-        uses: joonvena/robotframework-reporter-action@main
+        uses: joonvena/robotframework-reporter-action@v2.3
         with:
           gh_access_token: ${{ secrets.PAT }}
