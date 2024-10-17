@@ -10,29 +10,30 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - name: Execute tests
-        uses: joonvena/robotframework-docker-action@v1.0
+        uses: joonvena/robotframework-docker-action@main
         with:
-          robot_tests_dir: ./tests
+          robot_tests_dir: ./tests/data_driven_tests.robot
+          robot_options: '-d ./reports'
       - name: Upload test results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reports
-          path: reports
+          path: ./reports
 
   generate_report:
     if: always()
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
       - name: Download reports
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: reports
       - name: Send report to commit
-        uses: joonvena/robotframework-reporter-action@v2.3
+        uses: joonvena/robotframework-reporter-action@main
         with:
           gh_access_token: ${{ secrets.PAT }}
