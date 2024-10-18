@@ -7,6 +7,7 @@ Documentation   A resource file with reusable keywords and varibales.
 Library         SeleniumLibrary
 Library         String
 Library         Collections
+Library         utils.py
 
 
 *** Variables ***

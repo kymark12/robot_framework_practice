@@ -1,15 +1,14 @@
 *** Settings ***
-Documentation       Run tests using local data sets
+Documentation       Run tests using data sets from a csv file
 Library             SeleniumLibrary
+Library             DataDriver      file=data/data.csv      encoding=utf_8      dialect=unix
 Resource            ../resources/resource.robot
 Test Setup          open the browser with the Mortgage payment url
 Test Template       Validate unsuccessful login
 Test Teardown       Close Browser Session
 
-*** Test Cases ***          username        password
-Invalid username            dsahed          learning
-Invalid password            rahulshetty     ploudfg
-Special characters          @$@             learning
+*** Test Cases ***
+Login with ${username} and ${password}
 
 *** Keywords ***
 Validate unsuccessful login
