@@ -8,11 +8,10 @@ Resource            resource.robot
 
 *** Test Cases ***
 Validate the cards displayed in the shopping page
-      Fill the login form                               ${VALID_USERNAME}    ${VALID_PWD}
-      Wait until the element is visible on the page    css:.nav-link
-      Verify card titles in the shop page
-      Select an item                                    Blackberry
-
+    Fill the login form                                 ${VALID_USERNAME}    ${VALID_PWD}
+    Wait until the element is visible on the page       css:.nav-link
+    Verify card titles in the shop page
+    Select an item                                      Blackberry
 
 Select the form and navigate to the child window
     [Tags]  replay
